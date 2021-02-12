@@ -246,6 +246,7 @@ if !isdirectory(s:vim_tags)
 endif
 
 
+" 根据 neovim 的 Documents 设置的识别 term 的文件
 if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\(-.*\)\?$'
     set notermguicolors
 elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\(-.*\)\?$'
