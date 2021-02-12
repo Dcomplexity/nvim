@@ -199,9 +199,9 @@ if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
 
-if (has("termguicolors"))
-  set termguicolors
-endif
+"if (has("termguicolors"))
+"  set termguicolors
+"endif
 
 " Theming
 set cursorline
@@ -243,4 +243,23 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " 检测 ~/.cache/tags 不存在就新建
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
+endif
+
+
+if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\(-.*\)\?$'
+    set notermguicolors
+elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\(-.*\)\?$'
+    set termguicolors
+elseif $TERM =~ '^\(xterm\)\(-.*\)\?$'
+    if $XTERM_VERSION != ''
+        set termguicolors
+    elseif $KONSOLE_PROFILE_NAME != ''
+        set termguicolors
+    elseif $VTE_VERSION != ''
+        set termguicolors
+    else
+        set notermguicolors
+    endif
+elseif $TERM =~ ...
+    ... and so forth ...
 endif
